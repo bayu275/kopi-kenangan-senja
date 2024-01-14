@@ -72,12 +72,14 @@ body {
     transform: scaleX(0.5);
 }
 
-.navbar .navbar-extra a, .navbar-extra button {
+.navbar .navbar-extra a,
+.navbar-extra button {
     color: #fff;
     margin: 0 0.5rem;
 }
 
-.navbar .navbar-extra a:hover, .navbar-extra button:hover {
+.navbar .navbar-extra a:hover,
+.navbar-extra button:hover {
     color: var(--primary);
 }
 
@@ -88,6 +90,94 @@ body {
 #hamburger-menu {
     display: none;
 }
+
+/* Navbar Search Start */
+.navbar .search-form {
+    position: absolute;
+    top: 100%;
+    right: 7%;
+    background-color: #fff;
+    width: 50rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: 0.2s linear;
+}
+
+.navbar .search-form.active {
+    transform: scaleY(1);
+}
+
+.navbar .search-form input {
+    width: 100%;
+    height: 100%;
+    font-size: 1.6rem;
+    color: var(--bg);
+    padding: 1rem;
+}
+
+.navbar .search-form label {
+    color: var(--bg);
+    font-size: 2rem;
+    cursor: pointer;
+    margin-right: 1.5rem;
+}
+/* Navbar Search End */
+
+/* Shopping Cart Start */
+.shopping-cart {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    height: 100vh;
+    width: 35rem;
+    padding: 0 1.5rem;
+    color: var(--bg);
+    background-color: #fff;
+    transition: 0.3s;
+}
+
+.shopping-cart.active {
+    right: 0;
+}
+
+.shopping-cart .cart-item {
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed #666;
+}
+
+.shopping-cart img {
+    height: 6rem;
+    border-radius: 50%;
+}
+
+.shopping-cart .cart-item h3 {
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.shopping-cart .cart-item .item-price {
+    font-size: 1.2rem;
+}
+
+.shopping-cart .cart-item .trash {
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.shopping-cart .cart-item .trash:hover {
+    color: var(--primary);
+}
+
+/* Shopping Cart End */
+
 /* Navbar End */
 
 /* Hero Section Start */
@@ -151,13 +241,15 @@ body {
 /* About Section Start */
 .about,
 .menu,
-.contact {
+.contact,
+.products {
     padding: 8rem 7% 1.4rem;
 }
 
 .about h2,
 .menu h2,
-.contact h2 {
+.contact h2,
+.products h2 {
     text-align: center;
     font-size: 2.6rem;
     margin-bottom: 2rem;
@@ -165,7 +257,8 @@ body {
 
 .about h2 span,
 .menu h2 span,
-.contact h2 span {
+.contact h2 span,
+.products h2 span {
     color: var(--primary);
 }
 
@@ -206,7 +299,8 @@ body {
 }
 
 .menu p,
-.contact p {
+.contact p,
+.products p {
     text-align: center;
     max-width: 30rem;
     margin: auto;
@@ -235,6 +329,76 @@ body {
     margin: 1rem auto 0.5rem;
 }
 /* Menu Section End */
+
+/* Products Section Start */
+.products .row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.products .product-card {
+    text-align: center;
+    padding: 2rem;
+    border: 1px solid #eee;
+}
+
+.products .product-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.products .product-icons a {
+    width: 4rem;
+    height: 4rem;
+    color: #fff;
+    border: 1px solid #666;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.products .product-icons a:hover {
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.products .product-image {
+    padding: 1rem 0;
+}
+
+.products .product-image img {
+    height: 25rem;
+}
+
+.products .product-content h3 {
+    font-size: 2rem;
+}
+
+.products .product-stars {
+    font-size: 1.7rem;
+    padding: 0.8rem;
+    color: var(--primary);
+}
+
+.products .product-stars .star-full {
+    fill: var(--primary);
+}
+
+.products .product-price {
+    font-size: 1.5rem;
+}
+
+.products .product-price span {
+    text-decoration: line-through;
+    font-weight: lighter;
+    font-size: 1rem;
+}
+
+/* Products Section End */
 
 /* Contact Section Start */
 .contact .row {
@@ -322,8 +486,170 @@ footer .credit a {
     color: var(--bg);
     font-weight: 700;
 }
-
 /* Footer End */
+
+/* Modal Boxs */
+/* Item Detail Start */
+/* .modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal .modal-container {
+    position: relative;
+    background-color: #fefefe;
+    color: var(--bg);
+    margin: 15% auto;
+    padding: 1.2rem;
+    border: 1px solid #666;
+    width: 80%;
+}
+
+.modal .modal-close {
+    position: absolute;
+    right: 1rem;
+}
+
+.modal .modal-content {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.modal-content img {
+    height: 20rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    margin-top: 1.2rem;
+}
+
+.modal-content a {
+    display: flex;
+    gap: 1rem;
+    background-color: var(--primary);
+    color: #fff;
+    width: 12rem;
+    margin-top: 1rem;
+    padding: 1rem 1.2rem;
+    justify-content: center;
+    align-items: center;
+} */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    animation: animateModal 0.5s;
+}
+
+/* Modal Animation */
+@keyframes animateModal {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+.modal-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 60rem;
+    max-height: 60rem;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 10% auto;
+    color: var(--bg);
+}
+
+.modal-container .modal-close {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.2rem;
+    margin-right: 1.2rem;
+    color: var(--primary);
+}
+
+.modal-container .modal-close:hover {
+    color: red;
+}
+
+.modal-content {
+    display: flex;
+    padding: 20px 20px 40px;
+}
+
+.modal-content img {
+    height: 25rem;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 1.5rem;
+}
+
+.product-content {
+    flex-grow: 1;
+}
+
+.product-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.product-content p {
+    margin-bottom: 10px;
+}
+
+.product-stars {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.star-full {
+    color: var(--primary);
+    fill: var(--primary);
+}
+
+.product-price {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.modal-content a {
+    display: flex;
+    gap: 1rem;
+    background-color: var(--primary);
+    color: #fff;
+    width: 12rem;
+    margin-top: 1rem;
+    padding: 1rem 1.2rem;
+    justify-content: center;
+    align-items: center;
+}
+/* Item Detail End */
 
 /* Media Queries */
 
@@ -396,6 +722,31 @@ footer .credit a {
     .contact .row form {
         padding-top: 0;
     }
+    .modal-container {
+        margin: 30% auto;
+    }
+    .modal-content {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .modal-content img {
+        margin-right: 0; /* Hapus margin pada gambar pada tata letak kolom */
+        margin-bottom: 1.5rem;
+    }
+    .product-content {
+        width: 100%; /* Menentukan lebar penuh pada tata letak kolom */
+    }
+    .modal-content a {
+        width: 100%; /* Menentukan lebar penuh pada tata letak kolom */
+    }
+    .modal {
+        /* Tambahkan properti untuk menangani tampilan di perangkat seluler */
+        overflow-y: auto;
+    }
+    .modal-container {
+        /* Tambahkan aturan max-height untuk mengatasi konten yang panjang pada perangkat seluler */
+        max-height: 90vh;
+    }
 }
 
 /* Mobile */
@@ -405,5 +756,16 @@ footer .credit a {
     }
     .navbar .navbar-nav {
         width: 22rem;
+    }
+    .navbar .search-form {
+        width: 90%;
+        right: 5%;
+    }
+    .shopping-cart {
+        width: 25rem;
+    }
+    .modal-container {
+        margin-top: 35%;
+        width: 90%;
     }
 }
