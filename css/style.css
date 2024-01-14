@@ -72,13 +72,17 @@ body {
     transform: scaleX(0.5);
 }
 
-.navbar .navbar-extra a {
+.navbar .navbar-extra a, .navbar-extra button {
     color: #fff;
     margin: 0 0.5rem;
 }
 
-.navbar .navbar-extra a:hover {
+.navbar .navbar-extra a:hover, .navbar-extra button:hover {
     color: var(--primary);
+}
+
+.navbar .navbar-extra button {
+    background: none;
 }
 
 #hamburger-menu {
