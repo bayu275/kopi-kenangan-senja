@@ -327,6 +327,11 @@ body {
 
 .menu .row .menu-card .menu-card-title {
     margin: 1rem auto 0.5rem;
+    font-size: 2rem;
+}
+
+.menu .row .menu-card .menu-card-price {
+    font-size: 1.5rem;
 }
 /* Menu Section End */
 
@@ -392,7 +397,7 @@ body {
     font-size: 1.5rem;
 }
 
-.products .product-price span {
+.products .product-price span, .product-content .product-price span {
     text-decoration: line-through;
     font-weight: lighter;
     font-size: 1rem;
@@ -490,62 +495,6 @@ footer .credit a {
 
 /* Modal Boxs */
 /* Item Detail Start */
-/* .modal {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.6);
-}
-
-.modal .modal-container {
-    position: relative;
-    background-color: #fefefe;
-    color: var(--bg);
-    margin: 15% auto;
-    padding: 1.2rem;
-    border: 1px solid #666;
-    width: 80%;
-}
-
-.modal .modal-close {
-    position: absolute;
-    right: 1rem;
-}
-
-.modal .modal-content {
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-.modal-content img {
-    height: 20rem;
-    margin-right: 2rem;
-    margin-bottom: 2rem;
-}
-
-.modal-content p {
-    font-size: 1.2rem;
-    line-height: 1.6rem;
-    margin-top: 1.2rem;
-}
-
-.modal-content a {
-    display: flex;
-    gap: 1rem;
-    background-color: var(--primary);
-    color: #fff;
-    width: 12rem;
-    margin-top: 1rem;
-    padding: 1rem 1.2rem;
-    justify-content: center;
-    align-items: center;
-} */
-
 .modal {
     display: none;
     position: fixed;
@@ -620,11 +569,6 @@ footer .credit a {
 }
 
 .product-content p {
-    margin-bottom: 10px;
-}
-
-.product-stars {
-    display: flex;
     margin-bottom: 10px;
 }
 
