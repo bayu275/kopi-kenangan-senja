@@ -127,6 +127,22 @@ body {
 /* Navbar Search End */
 
 /* Shopping Cart Start */
+
+#shopping-cart {
+    position: relative;
+}
+
+#shopping-cart .cart-count {
+    display: inline-block;
+    padding: 1px 5px;
+    background-color: red;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    position: absolute;
+    top: 0;
+    right: -7px;
+}
+
 .shopping-cart {
     position: absolute;
     top: 100%;
@@ -205,7 +221,6 @@ body {
 
 .hero .mask-container {
     position: absolute;
-    /* background: salmon; */
     inset: 0;
     mask: url(../img/test2.svg);
     mask-size: cover;
@@ -516,7 +531,7 @@ footer .credit a {
 /* Modal Boxs */
 /* Item Detail Start */
 .modal {
-    display: none;
+    /* display: none; */
     position: fixed;
     top: 0;
     left: 0;
@@ -556,10 +571,12 @@ footer .credit a {
 
 .modal-container .modal-close {
     display: flex;
-    justify-content: flex-end;
     margin-top: 1.2rem;
     margin-right: 1.2rem;
     color: var(--primary);
+    cursor: pointer;
+    width: fit-content;
+    align-self: flex-end;
 }
 
 .modal-container .modal-close:hover {
