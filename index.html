@@ -32,15 +32,16 @@
                 </div>
 
                 <div class="navbar-extra">
-                    <a href="#" id="search" ref="btnSearch" @click="toggleSearch"><i data-feather="search"></i></a>
-                    <a href="#" id="shopping-cart" ref="btnCart" @click="toggleCart">
+                    <a href="#" id="search" ref="btnSearch" @click.prevent="toggleSearch"
+                        ><i data-feather="search"></i
+                    ></a>
+                    <a href="#" id="shopping-cart" ref="btnCart" @click.prevent="toggleCart">
                         <i data-feather="shopping-cart"></i>
                         <span class="cart-count" v-show="this.cart.qty">{{this.cart.qty}}</span>
                     </a>
                     <button id="hamburger-menu" ref="hamburgerMenu" @click="toggleMenu">
                         <i data-feather="menu"></i>
                     </button>
-                    <!-- <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a> -->
                 </div>
 
                 <!-- Search Start -->
@@ -52,29 +53,45 @@
 
                 <!-- Shopping Cart Start -->
                 <div class="shopping-cart" ref="shoppingCart" :class="{ 'active': showCart }">
-                    <div class="cart-item">
-                        <img src="img/products/1.jpg" alt="1" />
-                        <div class="item-detail">
-                            <h3>Product 1</h3>
-                            <div class="item-price">IDR 20.000</div>
+                    <template v-for="product in cart.items" key="product.id">
+                        <div class="cart-item">
+                            <img :src="`img/products/${product.img}`" alt="1" />
+                            <div class="item-detail">
+                                <h3>{{ product.name }}</h3>
+                                <div class="item-price">
+                                    <span>{{ formattedPrice(product.price) }}</span> &times;
+                                    <button id="remove-item" @click="removeFromCart(product)">&minus;</button>
+                                    <span>{{ product.qty }}</span>
+                                    <button id="add-item" @click="addToCart(product)">&plus;</button>
+                                    <div class="sub-total">
+                                        &equals;<span>{{ formattedPrice(product.total) }}</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <i data-feather="trash-2" class="trash"></i>
-                    </div>
-                    <div class="cart-item">
-                        <img src="img/products/1.jpg" alt="1" />
-                        <div class="item-detail">
-                            <h3>Product 1</h3>
-                            <div class="item-price">IDR 20.000</div>
-                        </div>
-                        <i data-feather="trash-2" class="trash"></i>
-                    </div>
-                    <div class="cart-item">
-                        <img src="img/products/1.jpg" alt="1" />
-                        <div class="item-detail">
-                            <h3>Product 1</h3>
-                            <div class="item-price">IDR 20.000</div>
-                        </div>
-                        <i data-feather="trash-2" class="trash"></i>
+                    </template>
+                    <h4 v-show="!cart.items.length" class="empty">Cart is empty</h4>
+                    <h4 v-show="cart.items.length" class="total">Total: {{ formattedPrice(cart.total) }}</h4>
+
+                    <div class="form-container" v-show="cart.items.length">
+                        <form action="" id="form-chekcout">
+                            <h5>Customer Detail</h5>
+                            <div class="input-group">
+                                <label for="name">
+                                    <span>Name</span>
+                                    <input type="text" id="name" autofocus />
+                                </label>
+                                <label for="email">
+                                    <span>Email</span>
+                                    <input type="email" id="email" />
+                                </label>
+                                <label for="telp">
+                                    <span>Phone</span>
+                                    <input type="tel" id="telp" autocomplete="off" />
+                                </label>
+                            </div>
+                            <button type="submit" id="btn-checkout" class="btn-checkout">Checkout</button>
+                        </form>
                     </div>
                 </div>
                 <!-- Shopping Cart End -->
@@ -169,7 +186,9 @@
                         <div class="product-card">
                             <div class="product-icons">
                                 <a href="#" @click.prevent="addToCart(product)"><i data-feather="shopping-cart"></i></a>
-                                <a href="#" class="product-detail" @click.prevent="toggleModal()"><i data-feather="eye"></i></a>
+                                <a href="#" class="product-detail" @click.prevent="toggleModal()"
+                                    ><i data-feather="eye"></i
+                                ></a>
                             </div>
                             <div class="product-image">
                                 <img :src="`/img/products/${product.id}.jpg`" :alt="product.name" />
@@ -246,7 +265,9 @@
             <!-- Modal Box Start -->
             <div class="modal" ref="modal" id="item-detail-modal" v-show="showModal">
                 <div class="modal-container">
-                    <a href="#" ref="modalClose" @click.prevent="closeModal()" class="modal-close"><i data-feather="x"></i></a>
+                    <a href="#" ref="modalClose" @click.prevent="closeModal()" class="modal-close"
+                        ><i data-feather="x"></i
+                    ></a>
                     <div class="modal-content">
                         <img src="img/products/1.jpg" alt="1" />
                         <div class="product-content">
